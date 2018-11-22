@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<ul class="list-group my-2">
+					<li class="list-group-item list-group-item-primary"
+						th:text="'Project Manager encargado: '"></li>
+					<li class="list-group-item" th:text="${proyecto.projectManager}"></li>
+				</ul>
+
+				<ul class="list-group my-2">
+					<li class="list-group-item list-group-item-primary"
+						th:text="'Descripcion del proyecto: '"></li>
+					<li class="list-group-item" th:text="${proyecto.descripcion}"></li>
+				</ul>
+				
+				<ul class="list-group my-2">
+					<li class="list-group-item list-group-item-primary"
+						th:text="'Desarrollador asignado: '"></li>
+					<li class="list-group-item" th:text="${proyecto.desarrollador}"></li>
+				</ul>
+				
+				<ul class="list-group my-2">
+					<li class="list-group-item list-group-item-primary"
+						th:text="'Fecha de inicio del desarrollo: '"></li>
+					<li class="list-group-item" th:text="${proyecto.fechaInicio}"></li>
+				</ul>
+				
+				<ul class="list-group my-2">
+					<li class="list-group-item list-group-item-primary"
+						th:text="'Fecha de entrega de proyecto: '"></li>
+					<li class="list-group-item" th:text="${proyecto.fechaEntrega}"></li>
+				</ul>
+
+				<a th:href="@{'/consultaproyectos'}"
+					class="btn btn-light btn-xs">&laquo; volver</a>
+
+			</div>
+		</div>
+
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

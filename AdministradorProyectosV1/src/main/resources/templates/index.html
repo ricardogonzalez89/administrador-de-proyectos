@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div>
+			<h1 th:text="${titulo1}"></h1>
+			<br />
+			<p th:text="${parrafo}"></p>
+			<!-- 			<p sec:authorize="isAuthenticated()"> -->
+			<!-- 			Bienvenido : <span sec:authentication="name"></span>  -->
+			<p>Se puede ingresar a la aplicacion con los siguiente usuarios</p>
+			<ul>
+				<li>user: admin password: password</li>
+
+				<li>user: consulta password: password</li>
+			</ul>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

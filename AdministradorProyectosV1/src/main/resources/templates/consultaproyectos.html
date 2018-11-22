@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<h1
+			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+			th:text="${titulo}"></h1>
+		<p>
+			<a sec:authorize="hasRole('ROLE_ADMIN')"
+				th:href="@{/capturaproyecto}" class="btn btn-success btn-xs">Crear
+				Proyecto</a>
+		</p>
+		<table class="table table-striped table-bordered">
+			<thead class="thead-inverse">
+				<tr>
+					<th sec:authorize="hasRole('ROLE_ADMIN')">Id</th>
+					<th>Nombre</th>
+					<th>Project manager</th>
+					<th>Descripcion</th>
+					<th>Desarrollador</th>
+					<th>Fecha Inicio</th>
+					<th>Fecha Entrega</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
+					<th sec:authorize="hasRole('ROLE_USER')">Consulta</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="proyecto: ${proyectos}">
+					<td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${proyecto.id}"></td>
+					<td th:text="${proyecto.nombre}"></td>
+					<td th:text="${proyecto.projectManager}"></td>
+					<td th:text="${proyecto.descripcion}"></td>
+					<td th:text="${proyecto.desarrollador}"></td>
+					<td th:text="${proyecto.fechaEntrega}"></td>
+					<td th:text="${proyecto.fechaInicio}"></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						class="btn btn-primary btn-xs"
+						th:href="@{/editarproyecto/} + ${proyecto.id}" th:text="'editar'"></a></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						class="btn btn-danger btn-xs"
+						th:href="@{/eliminarproyecto/} + ${proyecto.id}"
+						th:text="'eliminar'"
+						onclick="return confirm('Est&aacute;s seguro que quieres eliminar?');"></a></td>
+						
+					<td sec:authorize="hasRole('ROLE_USER')">
+					<a class="btn btn-danger btn-xs" th:href="@{/detalle/}+${proyecto.id}" th:text="detalle">
+					</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
